@@ -1,24 +1,21 @@
 'use strict';
 
 // Complete this algo
-const minJumps = (arr, jumpCount=0) => {
-  console.log('start of new minJumps', arr[0])
-  if(arr[0] >= arr.length){
-    jumpCount++;
+const minJumps = (arr, jumpCount = 1) => {
+  if(arr[0] >= arr.length-1){
     return jumpCount;
   } else {
-    let longestJump = arr[0]
-    let nextJump = 1
+    let longestJump = arr[0] //initializes longest jump to first index
+    let nextJump = 1 //index of next jump
     for(let index = 1; index <= arr[0]; index++){
-      let jumpLength = index + arr[1]
+      let jumpLength = index + arr[index]
       if(jumpLength > longestJump){
         longestJump = jumpLength;
         nextJump = index
       }
-      console.log('idx', index, 'length', jumpLength, 'long', longestJump, 'next', nextJump)
     }
     jumpCount++
-    return minJumps(arr.slice(nextJump))
+    return minJumps(arr.slice(nextJump), jumpCount)
   }
 
 };
